@@ -1,348 +1,658 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AB Studio | Powerful & Elegant</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AB Studio | Powerful & Elegant</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+        /* Existing Styles (Keep these) */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body {
-      font-family: 'Arial', sans-serif;
-      background: #000;
-      color: white;
-      overflow-x: hidden;
-      height: 100vh;
-      background: linear-gradient(to bottom, #1a2a6c, #b21f1f, #fdbb2d);
-      position: relative;
-    }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #000;
+            color: white;
+            overflow-x: hidden;
+            height: 100vh;
+            background: linear-gradient(to bottom, #1a2a6c, #b21f1f, #fdbb2d);
+            position: relative;
+        }
 
-    .star {
-      position: absolute;
-      width: 3px;
-      height: 3px;
-      background-color: white;
-      animation: starAnim 1.5s infinite;
-    }
+        .star {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background-color: white;
+            animation: starAnim 1.5s infinite;
+        }
 
-    @keyframes starAnim {
-      0% {
-        transform: translateY(0) scale(1);
-      }
-      50% {
-        transform: translateY(100vh) scale(1.5);
-      }
-      100% {
-        transform: translateY(0) scale(1);
-      }
-    }
+        @keyframes starAnim {
+            0% {
+                transform: translateY(0) scale(1);
+            }
 
-    header {
-      background-color: rgba(0, 0, 0, 0.7);
-      padding: 1rem 2rem;
-      text-align: center;
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 1000;
-    }
+            50% {
+                transform: translateY(100vh) scale(1.5);
+            }
 
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 2rem;
-    }
+            100% {
+                transform: translateY(0) scale(1);
+            }
+        }
 
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-size: 1.5rem;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
+        header {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 1rem 2rem;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-    nav a:hover {
-      color: #fdbb2d;
-    }
+        header nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
 
-    .hero {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      text-align: center;
-      background: rgba(0, 0, 0, 0.5);
-      padding: 3rem;
-      background-blend-mode: overlay;
-      position: relative;
-      z-index: 1;
-    }
+        header nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
 
-    .hero h1 {
-      font-size: 4rem;
-      line-height: 1.5;
-      text-transform: uppercase;
-    }
+        header nav a:hover {
+            color: #fdbb2d;
+        }
 
-    .hero p {
-      margin-top: 1rem;
-      font-size: 1.5rem;
-    }
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 3rem;
+            background-blend-mode: overlay;
+            position: relative;
+            z-index: 1;
+        }
 
-    .hero button {
-      background: #fdbb2d;
-      border: none;
-      padding: 1rem 2rem;
-      margin-top: 2rem;
-      color: black;
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: background 0.3s;
-      border-radius: 8px;
-    }
+        .hero h1 {
+            font-size: 4rem;
+            line-height: 1.5;
+            text-transform: uppercase;
+        }
 
-    .hero button:hover {
-      background: #ffb900;
-    }
+        .hero p {
+            margin-top: 1rem;
+            font-size: 1.5rem;
+        }
 
-    #about {
-      display: none;
-      padding: 3rem 2rem;
-      text-align: center;
-      background: rgba(255, 255, 255, 0.1);
-      margin-top: 2rem;
-      border-radius: 10px;
-    }
+        .hero button {
+            background: #fdbb2d;
+            border: none;
+            padding: 1rem 2rem;
+            margin-top: 2rem;
+            color: black;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 8px;
+        }
 
-    #about.show {
-      display: block;
-    }
+        .hero button:hover {
+            background: #ffb900;
+        }
 
-    #services {
-      padding: 3rem 2rem;
-      text-align: center;
-    }
+        #about {
+            display: none;
+            padding: 3rem 2rem;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            margin-top: 2rem;
+            border-radius: 10px;
+        }
 
-    .card-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-    }
+        #about.show {
+            display: block;
+        }
 
-    .card {
-      background-color: rgba(255, 255, 255, 0.1);
-      padding: 2rem;
-      border-radius: 12px;
-      text-align: center;
-      transition: transform 0.3s, box-shadow 0.3s;
-      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.8));
-      position: relative;
-    }
+        #services {
+            padding: 3rem 2rem;
+            text-align: center;
+        }
 
-    .card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-    }
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
 
-    .card img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      margin-bottom: 1rem;
-    }
+        .card {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.8));
+            position: relative;
+        }
 
-    .card h2 {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-    }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
 
-    .card a {
-      color: #fdbb2d;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1.2rem;
-      transition: color 0.3s;
-    }
+        .card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
 
-    .card a:hover {
-      color: #ffb900;
-    }
+        .card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
 
-    .contact-section {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 5rem 2rem;
-      background: rgba(0, 0, 0, 0.7);
-      margin-top: 5rem;
-      border-radius: 12px;
-      backdrop-filter: blur(10px);
-    }
+        .card a {
+            color: #fdbb2d;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.2rem;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
 
-    .contact-form-container {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 3rem;
-      border-radius: 12px;
-      max-width: 600px;
-      width: 100%;
-      text-align: center;
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
-    }
+        .card a:hover {
+            color: #ffb900;
+        }
 
-    .contact-form-container h2 {
-      font-size: 2rem;
-      margin-bottom: 2rem;
-      color: #fdbb2d;
-    }
+        .contact-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5rem 2rem;
+            background: rgba(0, 0, 0, 0.7);
+            margin-top: 5rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
 
-    .contact-form input, .contact-form textarea {
-      width: 100%;
-      padding: 1rem;
-      margin: 1rem 0;
-      border: 2px solid #fdbb2d;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.1);
-      color: white;
-      font-size: 1.1rem;
-    }
+        .contact-form-container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            border-radius: 12px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
 
-    .contact-form button {
-      background: #fdbb2d;
-      border: none;
-      padding: 1rem 3rem;
-      margin-top: 1rem;
-      color: black;
-      font-size: 1.1rem;
-      cursor: pointer;
-      border-radius: 8px;
-      transition: background 0.3s;
-    }
+        .contact-form-container h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #fdbb2d;
+        }
 
-    .contact-form button:hover {
-      background: #ffb900;
-    }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin: 1rem 0;
+            border: 2px solid #fdbb2d;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1.1rem;
+            resize: vertical;
+        }
 
-    footer {
-      background: #111;
-      color: white;
-      padding: 1rem;
-      text-align: center;
-      margin-top: 3rem;
-    }
+        .contact-form button {
+            background: #fdbb2d;
+            border: none;
+            padding: 1rem 3rem;
+            margin-top: 1rem;
+            color: black;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 8px;
+        }
 
-    .scroll-link {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #fdbb2d;
-      padding: 0.7rem 1.2rem;
-      text-transform: uppercase;
-      border: none;
-      border-radius: 50%;
-      font-weight: bold;
-      cursor: pointer;
-    }
-  </style>
+        .contact-form button:hover {
+            background: #ffb900;
+        }
+
+        footer {
+            background: #111;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .scroll-link {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #fdbb2d;
+            padding: 0.7rem 1.2rem;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 50%;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* New Styles for Comments */
+        .comment-section {
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .comment-form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .comment-form input[type="text"] { /* Style for the Name input */
+            padding: 0.8rem;
+            margin-bottom: 0.5rem;
+            border: 1px solid #fdbb2d;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+        }
+
+        .comment-form textarea {
+            padding: 0.8rem;
+            margin-bottom: 0.5rem;
+            border: 1px solid #fdbb2d;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            resize: vertical;
+        }
+
+        .comment-form button {
+            background: #fdbb2d;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            color: black;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-radius: 8px;
+        }
+
+        .comment-form button:hover {
+            background: #ffb900;
+        }
+
+        .comment {
+            margin-bottom: 1rem;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            display: flex;        /* Use Flexbox */
+            justify-content: space-between;  /* Distribute space */
+            align-items: center;   /* Vertical alignment */
+        }
+
+        .comment .comment-author {
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 1rem;
+        }
+
+        /* Scrollable Comments Container */
+        #comments-container {
+            max-height: 200px;        /* Adjust as needed */
+            overflow-y: scroll;     /* Enable vertical scroll */
+            padding: 0.5rem;
+        }
+
+        /* Style the scrollbar (Webkit browsers) */
+        #comments-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #comments-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        #comments-container::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        #comments-container::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /* Search Bar Styles */
+        .search-container {
+            display: flex;
+            align-items: center;
+            margin: 1rem 0;
+            padding: 0 1rem;
+        }
+
+        .search-container input[type="text"] {
+            padding: 0.6rem;
+            border: 1px solid #fdbb2d;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+            margin-right: 0.5rem;
+            width: 100%;        /* Take available space */
+            max-width: 200px;   /* Limit width */
+        }
+
+        /* Report Button Style */
+        .report-button {
+            background: #f44336;    /* Red color */
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-size: 0.8rem;
+        }
+
+        .report-button:hover {
+            background-color: #d32f2f;
+        }
+
+        /*Reply Button Style*/
+        .reply-button {
+            background: #2196F3;    /* Blue color */
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-size: 0.8rem;
+            margin-left: 0.5rem;
+        }
+
+        .reply-button:hover {
+            background-color: #1976D2;
+        }
+
+        /* New styles for the service card search */
+        .service-search-container {
+            padding: 1rem 2rem;
+            background: rgba(0, 0, 0, 0.7);
+            margin-top: 1rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+
+        .service-search-container input[type="text"] {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 0.5rem;
+            border: 1px solid #fdbb2d;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-  <!-- Star Animations -->
-  <div class="star" style="top: 30%; left: 10%;"></div>
-  <div class="star" style="top: 50%; left: 30%;"></div>
-  <div class="star" style="top: 70%; left: 50%;"></div>
-  <div class="star" style="top: 20%; left: 70%;"></div>
-  <div class="star" style="top: 90%; left: 90%;"></div>
+    <!-- Star Animations -->
+    <div class="star" style="top: 30%; left: 10%;"></div>
+    <div class="star" style="top: 50%; left: 30%;"></div>
+    <div class="star" style="top: 70%; left: 50%;"></div>
+    <div class="star" style="top: 20%; left: 70%;"></div>
+    <div class="star" style="top: 90%; left: 90%;"></div>
 
-  <header>
-    <nav>
-      <a href="#" onclick="showAbout()">AB Studio</a>
-      <a href="#services">Services</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+    <header>
+        <nav>
+            <a href="#" onclick="showAbout()">AB Studio</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
 
-  <section class="hero">
-    <div>
-      <h1>Welcome to AB Studio</h1>
-      <p>Crafting Powerful & Elegant Experiences</p>
-    </div>
-  </section>
+    <section class="hero">
+        <div>
+            <h1>Welcome to AB Studio</h1>
+            <p>Crafting Powerful & Elegant Experiences</p>
+        </div>
+    </section>
 
-  <!-- About Section -->
-  <section id="about" class="about">
-    <h2>AB Studio - A Bast Company</h2>
-    <p>Your journey to success begins with us. At AB Studio, we create beautiful, modern, and functional digital experiences.</p>
-  </section>
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2>AB Studio - A Bast Company</h2>
+        <p>Your journey to success begins with us. At AB Studio, we create beautiful, modern, and functional digital experiences.</p>
+    </section>
 
-  <!-- Services Section -->
-  <section id="services">
-    <h2>Our Services</h2>
-    <div class="card-container">
-      <div class="card">
-        <img src="https://via.placeholder.com/300x200" alt="Web Development">
-        <h2>Web Development</h2>
-        <p>Responsive and sleek websites for your business.</p>
-        <a href="https://example.com" target="_blank">Learn More</a>
-      </div>
-      <div class="card">
-        <img src="https://via.placeholder.com/300x200" alt="Branding & Design">
-        <h2>Branding & Design</h2>
-        <p>Building your brand with powerful and modern designs.</p>
-        <a href="https://example.com" target="_blank">Learn More</a>
-      </div>
-      <div class="card">
-        <img src="https://i.postimg.cc/50zT2VZj/qr-code-1.png" alt="SEO Optimization">
-        <h2>AB QR Code Genaerat</h2>
-        <p>free unlimited QR code generat</p>
-        <a href="https://abqrcode.netlify.app/" target="_blank">Learn More</a>
-      </div>
-    </div>
-  </section>
+    <!-- Service Search Bar -->
+    <section class="service-search-container">
+        <input type="text" id="service-search-input" placeholder="Search services...">
+    </section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="contact-section">
-    <div class="contact-form-container">
-      <h2>Contact Us</h2>
-      <p>We would love to hear from you. Please send us a message.</p>
-      <div class="contact-form">
-        <input type="text" id="name" placeholder="Your Name" required>
-        <input type="email" id="email" placeholder="Your Email" required>
-        <textarea id="message" placeholder="Your Message" rows="4" required></textarea>
-        <button type="submit" onclick="sendMessage()">Send Message</button>
-      </div>
-    </div>
-  </section>
+    <!-- Services Section -->
+    <section id="services">
+        <h2>Our Services</h2>
+        <div class="card-container">
+            <div class="card" data-name="Web Development" data-description="Responsive and sleek websites for your business.">
+                <img src="https://via.placeholder.com/300x200" alt="Web Development">
+                <h2>Web Development</h2>
+                <p>Responsive and sleek websites for your business.</p>
+                <a href="https://example.com" target="_blank">Learn More</a>
+            </div>
+            <div class="card" data-name="Branding & Design" data-description="Building your brand with powerful and modern designs.">
+                <img src="https://via.placeholder.com/300x200" alt="Branding & Design">
+                <h2>Branding & Design</h2>
+                <p>Building your brand with powerful and modern designs.</p>
+                <a href="https://example.com" target="_blank">Learn More</a>
+            </div>
+            <div class="card" data-name="AB QR Code Genaerat" data-description="Free unlimited QR code generat">
+                <img src="https://i.postimg.cc/50zT2VZj/qr-code-1.png" alt="SEO Optimization">
+                <h2>AB QR Code Genaerat</h2>
+                <p>free unlimited QR code generat</p>
+                <a href="https://abqrcode.netlify.app/" target="_blank">Learn More</a>
+            </div>
+        </div>
+    </section>
 
-  <footer>
-    <p>&copy; 2025 AB Studio. All Rights Reserved.</p>
-  </footer>
+    <section id="contact" class="contact-section">
+        <div class="contact-form-container">
+            <h2>Contact Us</h2>
+            <p>We would love to hear from you. Please send us a message.</p>
+            <div class="contact-form">
+                <input type="text" id="name" placeholder="Your Name" required>
+                <input type="email" id="email" placeholder="Your Email" required>
+                <textarea id="message" placeholder="Your Message" rows="4" required></textarea>
+                <button type="submit" onclick="sendMessage()">Send Message</button>
+            </div>
+        </div>
+    </section>
 
-  <button class="scroll-link" onclick="scrollToTop()">↑</button>
+    <section class="comment-section">
+        <h2>Comments</h2>
+        <div class="comment-form">
+            <input type="text" id="comment-name" placeholder="Your Name">
+            <textarea id="comment-text" placeholder="Write a comment..."></textarea>
+            <button onclick="addComment()">Post Comment</button>
+        </div>
+        <div id="comments-container">
+            <!-- Comments will be displayed here -->
+        </div>
+        <div id="error-message" class="error-message"></div>
+    </section>
 
-  <script>
-    function showAbout() {
-      document.getElementById('about').classList.toggle('show');
-    }
+    <footer>
+        <p>© 2025 AB Studio. All Rights Reserved.</p>
+    </footer>
 
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    <button class="scroll-link" onclick="scrollToTop()">↑</button>
 
-    function sendMessage() {
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const message = document.getElementById('message').value;
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getDatabase, ref, push, onValue, set, update } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
-      if (name && email && message) {
-        const mailtoLink = `mailto:abcoiseo@gmail.com?subject=Message from ${name}&body=Name: ${name}%0AEmail: ${email}%0AMessage: ${message}`;
-        window.location.href = mailtoLink;
-      } else {
-        alert("Please fill in all fields.");
-      }
-    }
-  </script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "ab-studio-4c309.firebaseapp.com",
+            databaseURL: "https://ab-studio-4c309-default-rtdb.firebaseio.com",
+            projectId: "ab-studio-4c309",
+            storageBucket: "ab-studio-4c309.appspot.com",
+            messagingSenderId: "290321392308",
+            appId: "1:290321392308:web:eed8f4bda17a51944eade1"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        // References to Firebase data
+        const commentsRef = ref(db, 'comments');
+
+        // Function to display error messages
+        function displayError(message) {
+            document.getElementById('error-message').textContent = message;
+        }
+
+        // Function to clear error messages
+        function clearError() {
+            document.getElementById('error-message').textContent = '';
+        }
+
+        // Function to add comment
+        window.addComment = () => {
+            clearError();
+            const commentName = document.getElementById('comment-name').value.trim();
+            const commentText = document.getElementById('comment-text').value.trim();
+
+            if (commentName === '') {
+                displayError("Name cannot be empty.");
+                return;
+            }
+
+            if (commentText === '') {
+                displayError("Comment cannot be empty.");
+                return;
+            }
+
+            // Basic Comment Object (Expand this)
+            const comment = {
+                author: commentName,
+                text: commentText,
+                timestamp: new Date().toISOString()
+            };
+
+            try {
+                push(commentsRef, comment)
+                    .then(() => {
+                        document.getElementById('comment-name').value = '';
+                        document.getElementById('comment-text').value = ''; // Clear input
+                    })
+                    .catch(error => {
+                        console.error("Error adding comment:", error);
+                        displayError("Failed to add comment.  Check console.");
+                    });
+            } catch (error) {
+                console.error("Error during add comment operation:", error);
+                displayError("An unexpected error occurred. Check console.");
+            }
+        };
+
+        // Function to display comments
+        function displayComments(comments) {
+            const commentsContainer = document.getElementById('comments-container');
+            commentsContainer.innerHTML = ''; // Clear existing comments
+
+            if (!comments) return; // Exit if no comments
+
+            Object.entries(comments).forEach(([key, comment]) => {
+                const commentDiv = document.createElement('div');
+                commentDiv.classList.add('comment');
+                commentDiv.innerHTML = `
+                    <div><div class="comment-author">${comment.author}</div>
+                    <div class="comment-text">${comment.text}</div></div>
+                `;
+                commentsContainer.appendChild(commentDiv);
+            });
+        }
+
+        // Listen for changes in comments
+        onValue(commentsRef, (snapshot) => {
+            const data = snapshot.val();
+            displayComments(data);
+        });
+
+        // Real-time search for service cards
+        document.getElementById('service-search-input').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const cards = document.querySelectorAll('#services .card');
+
+            cards.forEach(card => {
+                const name = card.dataset.name.toLowerCase();
+                const description = card.dataset.description.toLowerCase();
+
+                if (name.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        });
+
+        // Existing functions
+        function showAbout() {
+            document.getElementById('about').classList.toggle('show');
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function sendMessage() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            if (name && email && message) {
+                const mailtoLink = `mailto:abcoiseo@gmail.com?subject=Message from ${name}&body=Name: ${name}%0AEmail: ${email}%0AMessage: ${message}`;
+                window.location.href = mailtoLink;
+            } else {
+                alert("Please fill in all fields.");
+            }
+        }
+    </script>
 </body>
 </html>
